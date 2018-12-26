@@ -6,7 +6,7 @@ layout: post
 Over the past years the amount of things I need to keep track of has grown a lot. Since I'm well aware of the limited space inside my skull, I've started to write things down. 
 
 ## First version: plain markdown files
-Since I tend to spend a lot of my time in Vim, my first system to keep on top of things was simple: I started keeping a list of markdown files, with a simple TODO.md split into 2 sections: TODO and DONE.
+Since I tend to spend a lot of my time in Vim, my first system to keep on top of things was simple: I started keeping a list of markdown files, with a simple `TODO.md` split into 2 sections: TODO and DONE.
 
 The TODO section is a simple list of bullets:
 
@@ -41,3 +41,7 @@ Here's what I've found so far:
   * [Vim org-mode](https://github.com/jceb/vim-orgmod) ⇒ A re-implementation of org-mode for Vim. It's not feature complete, but it gets the core right.
   * [Vim Organizer](https://github.com/hsitz/VimOrganizer) ⇒ Instead of trying to re-implement org-mode, Vim Organizer works as a front-end to the actual org-mode. The main downside of this is needing to run Emacs as a service.
   * [Do too](https://github.com/dhruvasagar/vim-dotoo) ⇒ Not an actual org-mode implementation but a work-alike, based on Bernt Hansen's article. The file-format is mostly but not completely compatible. Since it's based on the article it's much more opinionated.
+
+I've been going back and forth a bit between vim-org-mode and do-too. Vim Organizer was a bit of a no-starter for me since it seems to be less well maintained, plus it carries the extra burden of the Emacs setup.
+
+

@@ -182,3 +182,16 @@ div.footer{
   padding-bottom: 15px;
   
 }*/
+
+
+div.figure {
+  float: center;
+  width: 80%;
+  text-align: center;
+  font-style: bold;
+  font-size: smaller;
+  text-indent: 0;
+  border: thin silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}

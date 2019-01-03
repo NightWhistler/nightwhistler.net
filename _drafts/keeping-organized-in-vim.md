@@ -44,4 +44,18 @@ Here's what I've found so far:
 
 I've been going back and forth a bit between vim-org-mode and do-too. Vim Organizer was a bit of a no-starter for me since it seems to be less well maintained, plus it carries the extra burden of the Emacs setup.
 
+## What _is_ org mode?
 
+I found this question surprisingly hard to answer, and it took me a lot of reading to figure out some answer. 
+I'll try to summarize my current knowledge here, but do note that I have no pretence to have a complete understanding... org-mode is huge after all.
+
+It's a hierarchical plain-text file format, essentially nested bullet points.
+Items are called "headlines", and the whole of the headlines forms the outline of a document.
+
+It looks something like this:
+```
+  * Meeting today [2018-12-20]
+  ** We're behind schedule
+  *** TODO E-mail the customer <2018-12-21 Fri>
+  ** Cookies are a great success, bring more
+``

@@ -2,4 +2,11 @@
 layout: layout
 ---
 
-{{ content }}
+<div class="container">
+  <h3><strong><a href="{{ page.url }}">{{ page.title }}</a></strong></h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{ content }}
+    </div>
+  </div>
+</div>

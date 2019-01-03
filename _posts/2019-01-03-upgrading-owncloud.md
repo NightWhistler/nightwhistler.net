@@ -26,7 +26,7 @@ The plan I had in mind was:
 
 The first step went smoothly enough: I followed the steps documented [here](https://linuxconfig.org/how-to-upgrade-debian-8-jessie-to-debian-9-stretch) and had no problems. Then I called up the owncloud URL, and clicked upgrade button only to be greeted by this:
 
-{% include image.html url="assets/images/owncloud_upgrade.png" description="Exception: Updates between multiple major versions and downgrades are unsupported." %}
+{% include image.html url="/assets/images/owncloud_upgrade.png" description="Exception: Updates between multiple major versions and downgrades are unsupported." %}
 
 
 It turns out that owncloud will only upgrade one major version at the time. Before the upgrade I was running owncloud 7.0, but Debian 9 came with 10.0.10. This meant I'd need to follow the path 

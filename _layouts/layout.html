@@ -14,6 +14,26 @@
       <title>{{ site.title }}</title>
     {% endif %}
 
+    <!-- Twitter cards -->
+    <meta name="twitter:site"    content="@{{ site.twitter }}">
+    <meta name="twitter:creator" content="@{{ site.author }}">
+    <meta name="twitter:title"   content="{{ page.title }}">
+
+    {% if page.summary %}
+    <meta name="twitter:description" content="{{ page.summary }}">
+    {% else %}
+    <meta name="twitter:description" content="{{ site.description }}">
+    {% endif %}
+
+    {% if page.image %}
+    <meta name="twitter:card"  content="summary_large_image">
+    <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+    {% else %}
+    <meta name="twitter:card"  content="summary">
+    <meta name="twitter:image" content="{{ site.baseurl }}static/img/{{ site.avatar }}">
+    {% endif %}
+    <!-- end of Twitter cards -->
+
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="

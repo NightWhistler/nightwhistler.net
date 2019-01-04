@@ -60,7 +60,7 @@ For this to work, I'd need to run a Docker image that has Apache and owncloud, a
   * Shut down Apache
   * Run the Docker container in host-networking mode
   * Volume mount my owncloud data folder
-  * Volume mount the MySQL (actually MariaDB socket
+  * Volume mount the MySQL (actually MariaDB) socket
   * Volume mount my current owncloud config, so the wizard can use and update it
 
 This looks roughly like this:

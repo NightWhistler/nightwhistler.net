@@ -11,7 +11,7 @@ safe: true
 gems: [jekyll-paginate]
 
 # edit here to achieve your personal greatness
-url: https://nightwhistler.github.io/
+url: https://nightwhistler.github.io
 # baseurl: /
 title: Alex Kuiper
 author: Alex Kuiper

@@ -4,7 +4,7 @@ title:  "Screw this, I'm outta here!"
 date:   2009-03-20 00:00:00 +0100
 categories: IT
 ---
-![De Passage]({{ site.baseurl }}assets/images/passage.jpg){:style="float: left;margin-right: 1em;"}
+![De Passage]({{ "/assets/images/passage.jpg" | relative_url }}){:style="float: left;margin-right: 1em;"}
 
 That’s pretty much how I felt yesterday… had been at work for 2 hours, and it was clear: I wasn’t going to be productive that day…
 

@@ -2,6 +2,7 @@
 layout: post
 title:  "The obligatory first post..."
 date:   2009-03-19 00:00:00 +0100
+categories: blog
 ---
 So, here goes: Yay, I have a blog, hope I’ll remember to update, love you all…. you know the drill.
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "Self-documenting Service interfaces"
 date:   2011-11-23 10:11:45 +0100
-categories: java
+categories: blog
 ---
 
 I’m mocking up a quick example project for a presentation about Fitnesse and when I had to draw up some quick business services I was once again reminded of how much I hate Exceptions.

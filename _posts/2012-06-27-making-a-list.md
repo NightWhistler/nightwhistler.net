@@ -2,7 +2,7 @@
 layout: post
 title:  "Making a list"
 date:   2012-06-27 00:00:00 +0100
-categories: java
+categories: blog
 ---
 …and checking it twice?
 

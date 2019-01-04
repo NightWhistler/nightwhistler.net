@@ -2,7 +2,7 @@
 layout: post
 title:  "Splattering brains on the Wii 😁"
 date:   2009-06-11 00:00:00 +0100
-categories: ersonal
+categories: blog
 tags: zombies
 ---
 ![House of the Dead Overkill]({{ "/assets/images/1235136976.jpg" | relative_url }}){:style="width: 40em;"}

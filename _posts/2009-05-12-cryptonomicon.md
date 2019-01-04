@@ -2,7 +2,7 @@
 layout: post
 title:  "Cryptonomicon"
 date:   2009-05-12 00:00:00 +0100
-categories: personal
+categories: blog
 tags: crypto
 ---
 I finally finished reading Cryptonomicon yesterday… this book holds a second place after “The Stand” for book that took me the longest to finish… I started reading it over a year ago, put it away, came back and finally finished it… since I was requested to blog that kind of stuff too, here goes… 😉

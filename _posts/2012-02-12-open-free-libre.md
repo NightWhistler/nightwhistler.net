@@ -2,7 +2,7 @@
 layout: post
 title:  "On free, open and libre…"
 date:   2012-02-12 00:00:00 +0100
-categories: oss
+categories: blog
 ---
 I have undertaken a bit of an experiment in releasing PageTurner: it’s free as in speech but not as in beer.
 

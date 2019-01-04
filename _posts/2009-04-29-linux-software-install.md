@@ -2,7 +2,7 @@
 layout: post
 title:  "Linux software install"
 date:   2009-04-29 00:00:00 +0100
-categories: IT
+categories: blog
 tags: [linux, rants]
 ---
 

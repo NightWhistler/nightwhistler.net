@@ -2,8 +2,8 @@
 title: "Upgrading Owncloud"
 layout: post
 date:   2019-01-03 00:00:00 +0100
-image:  assets/images/owncloud_upgrade.png
-categories: docker
+image:  /assets/images/owncloud_upgrade.png
+categories: blog
 summary: This is the story of how I tried to upgrade my owncloud, got it wrong and then spent a few hours fixing it using Docker. I'm documenting it here to share the solution I came up with.
 ---
 

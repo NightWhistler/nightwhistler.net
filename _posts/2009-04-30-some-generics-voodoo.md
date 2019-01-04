@@ -2,7 +2,7 @@
 layout: post
 title:  "Some Java Generics Voodoo… no zombies involved."
 date:   2009-04-30 00:00:00 +0100
-categories: java
+categories: blog
 tags: [development,generics,hibernate,java,spring]
 ---
 In a perfect world, I’d be doing all my coding in Groovy… but since that isn’t happening any time soon, I’ve found that Generics are a good way of dealing with statically typed languages.

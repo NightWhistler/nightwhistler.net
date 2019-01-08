@@ -3,8 +3,6 @@ title: "BlockChain from Scratch, Part 2: Adding a PoW Algorithm"
 layout: post
 ---
 
-# BlockChain from Scratch, Part 2: Adding a PoW Algorithm
-
 Now we have a basic blockchain, which shows the concept of how a chain works.
 In its current form it’s not terribly useful however. It’s essentially a distributed linked-list, with very little guarantees.
 
@@ -25,88 +23,99 @@ A fairly straight-forward way to implement Proof of Work is to require the hash 
 
 First, let’s update the `BlockChain` class we saw earlier.
 
-    object BlockChain {
+```scala
+object BlockChain {
 
-      type DifficultyFunction = Block => BigInt
-      type HashFunction = Block => BigInt
+  type DifficultyFunction = Block => BigInt
+  type HashFunction = Block => BigInt
 
-      val defaultDifficultyFunction = NaiveCoinDifficulty
-      val defaultHashFunction = SimpleSHA256Hash
+  val defaultDifficultyFunction = NaiveCoinDifficulty
+  val defaultHashFunction = SimpleSHA256Hash
 
-      def apply( difficultyFunction: DifficultyFunction = defaultDifficultyFunction, hashFunction: HashFunction = defaultHashFunction )
-        = new BlockChain(Seq(GenesisBlock), difficultyFunction, hashFunction)
+  def apply( difficultyFunction: DifficultyFunction = defaultDifficultyFunction, hashFunction: HashFunction = defaultHashFunction )
+    = new BlockChain(Seq(GenesisBlock), difficultyFunction, hashFunction)
 
-    }
+}
+```
 
 In the companion object I added 2 new type aliases: `DifficultyFunction` and `HashFunction`. Both take a Block and return a BigInt.
 
 Then, I added 2 fields to the `BlockChain` class itself:
 
-    case class BlockChain private(val blocks: Seq[Block], difficultyFunction: DifficultyFunction, hashFunction: HashFunction) {
+```scala
+case class BlockChain private(val blocks: Seq[Block], difficultyFunction: DifficultyFunction, hashFunction: HashFunction) {
+```
 
 `DifficultyFunction` and `HashFunction` are simple type aliases:
 
-    type DifficultyFunction = Block => BigInt
-    type HashFunction = Block => BigInt
+```scala
+type DifficultyFunction = Block => BigInt
+type HashFunction = Block => BigInt
+```
 
 This uses the fact that a hash-code is essentially just a number. This means that to implement a difficulty-function we can require it to be below a certain threshold. As the chain gets longer, we lower the required value making it harder to add new blocks to the chain.
 
-    private def validBlock(newBlock: Block, previousBlock: Block, messages: Set[BlockMessage]) =
-      previousBlock.index + 1 == newBlock.index &&
-      previousBlock.hash == newBlock.previousHash &&
-      (newBlock.timestamp - (new Date().getTime / 1000)) < TWO_HOURS &&
-      previousBlock.timestamp <= newBlock.timestamp &&
-      hashFunction(newBlock) == newBlock.hash &&
-      newBlock.hash < difficultyFunction(newBlock) && 
-      ! newBlock.messages.exists( messages.contains(_))
-
--   The comparison is very simple: the hash needs to be smaller than the required difficulty for that block.
+```scala
+private def validBlock(newBlock: Block, previousBlock: Block, messages: Set[BlockMessage]) =
+  previousBlock.index + 1 == newBlock.index &&
+  previousBlock.hash == newBlock.previousHash &&
+  (newBlock.timestamp - (new Date().getTime / 1000)) < TWO_HOURS &&
+  previousBlock.timestamp <= newBlock.timestamp &&
+  hashFunction(newBlock) == newBlock.hash &&
+  newBlock.hash < difficultyFunction(newBlock) && 
+  ! newBlock.messages.exists( messages.contains(_))
+```
+The comparison is very simple: the hash needs to be smaller than the required difficulty for that block.
 
 For completeness sake, I’ve added the actual implementation of the difficulty-function here:
 
-    /**
-      * This is the difficulty function used by naivecoin,
-      * which raises the difficulty based on the block-index.
-      *
-      * The difficulty goes up every X blocks.
-      */
-    object NaiveCoinDifficulty extends DifficultyFunction {
-      val BASE_DIFFICULTY: BigInt = BigInt("f" * 64, 16)
-      val EVERY_X_BLOCKS = 5
-      val POW_CURVE = 5
+```scala
+/**
+  * This is the difficulty function used by naivecoin,
+  * which raises the difficulty based on the block-index.
+  *
+  * The difficulty goes up every X blocks.
+  */
+object NaiveCoinDifficulty extends DifficultyFunction {
+  val BASE_DIFFICULTY: BigInt = BigInt("f" * 64, 16)
+  val EVERY_X_BLOCKS = 5
+  val POW_CURVE = 5
 
-      override def apply(block: Block): BigInt = {
-        val blockSeriesNumber = ((BigInt(block.index) + 1) / EVERY_X_BLOCKS ) + 1
-        val pow = blockSeriesNumber.pow(POW_CURVE)
+  override def apply(block: Block): BigInt = {
+    val blockSeriesNumber = ((BigInt(block.index) + 1) / EVERY_X_BLOCKS ) + 1
+    val pow = blockSeriesNumber.pow(POW_CURVE)
 
-        BASE_DIFFICULTY / pow
-      }
-    }
+    BASE_DIFFICULTY / pow
+  }
+}
 
-    /**
-      * A difficultyfunction that will never succeed
-      */
-    object ImpossibleDifficulty extends DifficultyFunction {
-      override def apply(block: Block): BigInt = 0
-    }
+/**
+  * A difficultyfunction that will never succeed
+  */
+object ImpossibleDifficulty extends DifficultyFunction {
+  override def apply(block: Block): BigInt = 0
+}
 
-    /**
-      * A difficulty function that will always succeed
-      */
-    object NoDifficulty extends DifficultyFunction {
-      override def apply(b: Block): BigInt = NaiveCoinDifficulty.BASE_DIFFICULTY
-    }
+/**
+  * A difficulty function that will always succeed
+  */
+object NoDifficulty extends DifficultyFunction {
+  override def apply(b: Block): BigInt = NaiveCoinDifficulty.BASE_DIFFICULTY
+}
+```
 
 ## BlockMessages
 
 When we need to do this much work to add a new Block to the chain, it doesn’t make much sense to have a single string as the payload for a Block. I extended the original definitions a bit to now give each message a unique ID and to have a block contain a sequence of messages:
 
-    case class BlockMessage( data: String, id: String = UUID.randomUUID().toString)
+```scala
+case class BlockMessage( data: String, id: String = UUID.randomUUID().toString)
 
-    object GenesisBlock extends Block(0, BigInt(0), 1497359352, Seq(BlockMessage("74dd70aa-2ddb-4aa2-8f95-ffc3b5cebad1","Genesis block")), 0,
-      BigInt("2b33684ac1ce0a93a54410de84d4114a3882362bcec35a2a9b588630811ae92b", 16))
+object GenesisBlock extends Block(0, BigInt(0), 1497359352, Seq(BlockMessage("74dd70aa-2ddb-4aa2-8f95-ffc3b5cebad1","Genesis block")), 0,
+  BigInt("2b33684ac1ce0a93a54410de84d4114a3882362bcec35a2a9b588630811ae92b", 16))
 
-    case class Block(index: Long, previousHash: BigInt, timestamp: Long, messages: Seq[BlockMessage], nonse: Long, hash: BigInt)
+case class Block(index: Long, previousHash: BigInt, timestamp: Long, messages: Seq[BlockMessage], nonse: Long, hash: BigInt)
+```
 
 The unique ID allows us to check if a message is already in the chain or not. In [section\_title](#_mining_for_real) I’ll explain why this is important.
 
@@ -122,48 +131,50 @@ The moment a new block is added to the blockchain, we stop all our open miners, 
 
 Let’s look at the `MiningWorker` class first:
 
-    object MiningWorker {
-      case class MineBlock(blockChain: BlockChain, messages: Seq[BlockMessage], startNonse: Long = 0, timeStamp: Long = new java.util.Date().getTime )
+```scala
+object MiningWorker {
+  case class MineBlock(blockChain: BlockChain, messages: Seq[BlockMessage], startNonse: Long = 0, timeStamp: Long = new java.util.Date().getTime )
 
-      case class MineResult(block: Block)
+  case class MineResult(block: Block)
 
-      case object StopMining
+  case object StopMining
 
-      def props( reportBackTo: ActorRef ): Props = Props(classOf[MiningWorker], reportBackTo)
-    }
+  def props( reportBackTo: ActorRef ): Props = Props(classOf[MiningWorker], reportBackTo)
+}
 
-    class MiningWorker(reportBackTo: ActorRef) extends Actor {
+class MiningWorker(reportBackTo: ActorRef) extends Actor {
 
-      val logger = Logger("MiningActor")
+  val logger = Logger("MiningActor")
 
-      var keepMining = true
+  var keepMining = true
 
-      override def receive: Receive = {
+  override def receive: Receive = {
 
-        case StopMining => keepMining = false
+    case StopMining => keepMining = false
 
-        case MineBlock(blockChain, messages, startNonse, timeStamp) =>
-          if ( startNonse == 0 ) {
-            logger.debug(s"Starting mining attempt for ${messages.size} messages with index ${blockChain.latestBlock.index +1}")
-          }
-
-          startNonse.until(startNonse+100).flatMap { nonse =>
-            blockChain.attemptBlock(messages, nonse)
-          }.headOption match {
-            case Some(block) =>
-              logger.debug(s"Found a block with index ${block.index} after ${new java.util.Date().getTime - timeStamp} ms and ${block.nonse +1} attempts.")
-              reportBackTo ! MineResult(block)
-              context.stop(self)
-
-            case None if keepMining => self ! MineBlock(blockChain, messages, startNonse + 100, timeStamp)
-
-            case None =>
-              logger.debug(s"Aborting mining for messages block ${blockChain.latestBlock.index +1}")
-              context.stop(self)
-
-          }
+    case MineBlock(blockChain, messages, startNonse, timeStamp) =>
+      if ( startNonse == 0 ) {
+        logger.debug(s"Starting mining attempt for ${messages.size} messages with index ${blockChain.latestBlock.index +1}")
       }
-    }
+
+      startNonse.until(startNonse+100).flatMap { nonse =>
+        blockChain.attemptBlock(messages, nonse)
+      }.headOption match {
+        case Some(block) =>
+          logger.debug(s"Found a block with index ${block.index} after ${new java.util.Date().getTime - timeStamp} ms and ${block.nonse +1} attempts.")
+          reportBackTo ! MineResult(block)
+          context.stop(self)
+
+        case None if keepMining => self ! MineBlock(blockChain, messages, startNonse + 100, timeStamp)
+
+        case None =>
+          logger.debug(s"Aborting mining for messages block ${blockChain.latestBlock.index +1}")
+          context.stop(self)
+
+      }
+  }
+}
+```
 
 It tries to add a block to the blockchain, incrementing the nonse in blocks of 100. After each 100 nonses, it checks if it should go on or not. This allows us to stop the worker when the work it is doing no longer has value (i.e. the blockchain has changed in the mean time).
 
@@ -171,69 +182,71 @@ When it successfully finds a block, it returns it in a `MineResult` message.
 
 The `Mining` trait spawns a worker for each distinct set of `BlockMessage` objects to add to the chain.
 
-    object Mining {
-      case class MineBlock(messages: Seq[BlockMessage] )
+```scala
+object Mining {
+  case class MineBlock(messages: Seq[BlockMessage] )
 
-      case object BlockChainInvalidated
-    }
+  case object BlockChainInvalidated
+}
 
-    trait Mining {
-      this: BlockChainCommunication with PeerToPeer with CompositeActor =>
+trait Mining {
+  this: BlockChainCommunication with PeerToPeer with CompositeActor =>
 
-      var miners: Set[ActorRef] = Set.empty
-      var messages: Set[BlockMessage] = Set.empty
+  var miners: Set[ActorRef] = Set.empty
+  var messages: Set[BlockMessage] = Set.empty
 
-      def createWorker( factory: ActorRefFactory ): ActorRef = factory.actorOf(MiningWorker.props(self))
+  def createWorker( factory: ActorRefFactory ): ActorRef = factory.actorOf(MiningWorker.props(self))
 
-      receiver {
-        case BlockChainInvalidated =>
-          logger.debug("The blockchain has changed, stopping all miners.")
-          miners.foreach( _ ! StopMining )
+  receiver {
+    case BlockChainInvalidated =>
+      logger.debug("The blockchain has changed, stopping all miners.")
+      miners.foreach( _ ! StopMining )
 
-          messages = messages.filterNot( blockChain.contains(_))
+      messages = messages.filterNot( blockChain.contains(_))
 
-          if ( ! messages.isEmpty ) {
-            self ! MineBlock(messages.toSeq)
-          }
-
-        case MineBlock(requestMessages) =>
-
-          logger.debug(s"Got mining request for ${requestMessages.size} messages with current blockchain index at ${blockChain.latestBlock.index}")
-          val filtered = requestMessages.filterNot( blockChain.contains(_))
-
-          //We only need to start mining if any new messages are in the message.
-          if ( ! (filtered.toSet -- messages).isEmpty ) {
-            messages ++= filtered
-
-            //Tell all peers to start mining
-            peers.foreach( p => p ! MineBlock(messages.toSeq))
-
-            //Spin up a new actor to do the mining
-            val miningActor = createWorker(context)
-            context.watch(miningActor)
-            miners += miningActor
-
-            miningActor ! MiningWorker.MineBlock(blockChain, messages.toSeq)
-          } else logger.debug("Request contained no new messages, so not doing anything.")
-
-        case MineResult(block) =>
-          if ( blockChain.validBlock(block) ) {
-            logger.debug(s"Received a valid block from the miner for index ${block.index}, adding it to the chain.")
-            messages = messages -- block.messages
-            handleBlockChainResponse(Seq(block))
-          } else logger.debug(s"Received an outdated block from the miner for index ${block.index}.")
-
-        case Terminated(deadActor) =>
-          miners -= deadActor
-          logger.debug(s"Still running ${miners.size} miners for ${messages.size} messages")
-
-          if ( miners.size == 0  && ! messages.isEmpty ) {
-            val request = MineBlock(messages.toSeq)
-            messages = Set.empty
-            self ! request
-          }
+      if ( ! messages.isEmpty ) {
+        self ! MineBlock(messages.toSeq)
       }
-    }
+
+    case MineBlock(requestMessages) =>
+
+      logger.debug(s"Got mining request for ${requestMessages.size} messages with current blockchain index at ${blockChain.latestBlock.index}")
+      val filtered = requestMessages.filterNot( blockChain.contains(_))
+
+      //We only need to start mining if any new messages are in the message.
+      if ( ! (filtered.toSet -- messages).isEmpty ) {
+        messages ++= filtered
+
+        //Tell all peers to start mining
+        peers.foreach( p => p ! MineBlock(messages.toSeq))
+
+        //Spin up a new actor to do the mining
+        val miningActor = createWorker(context)
+        context.watch(miningActor)
+        miners += miningActor
+
+        miningActor ! MiningWorker.MineBlock(blockChain, messages.toSeq)
+      } else logger.debug("Request contained no new messages, so not doing anything.")
+
+    case MineResult(block) =>
+      if ( blockChain.validBlock(block) ) {
+        logger.debug(s"Received a valid block from the miner for index ${block.index}, adding it to the chain.")
+        messages = messages -- block.messages
+        handleBlockChainResponse(Seq(block))
+      } else logger.debug(s"Received an outdated block from the miner for index ${block.index}.")
+
+    case Terminated(deadActor) =>
+      miners -= deadActor
+      logger.debug(s"Still running ${miners.size} miners for ${messages.size} messages")
+
+      if ( miners.size == 0  && ! messages.isEmpty ) {
+        val request = MineBlock(messages.toSeq)
+        messages = Set.empty
+        self ! request
+      }
+  }
+}
+```
 
 When a `MiningWorker` returns a result, we see which messages are in the result. These messages are removed from the queue of messages to add. We then add the new `Block` to the chain through the same procedure as if the `Block` had come from a peer by calling the `handleBlockChainResponse` method. This leads to a `BlockChainInvalidated` event which causes all currently running workers to be stopped. We then start a single new worker for all the messages that currently aren’t in the chain yet.
 

@@ -1,5 +1,5 @@
 ---
-title: "Upgrading Owncloud"
+title: "Fixing a broken OwnCloud upgrade using Docker"
 layout: post
 date:   2019-01-03 00:00:00 +0100
 image:  /assets/images/owncloud_upgrade.png

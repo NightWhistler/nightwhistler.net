@@ -1,15 +1,15 @@
 ---
-title: "My thoughts about the Gilette Commercial"
+title: "My thoughts about the Gillette Commercial"
 layout: post
 date:   2019-01-17 13:22:00 +0100
 tags: [personal,opinions,toxic masculinity,feminism]
 ---
-I'd like to share some thoughts I had about the Gilette Commercial.
+I'd like to share some thoughts I had about the Gillette Commercial.
 
-For those of you that have missed it: Gilette recently released a
+For those of you that have missed it: Gillette recently released a
 commercial in which they call out toxic masculinity, which I've included below.
 
-{% include youtube.html id="koPmuEyP3a0" description="The Gilette Commercial" %}
+{% include youtube.html id="koPmuEyP3a0" description="The Gillette Commercial" %}
 
 I know that toxic masculinity is somewhat controversial term
 among some people, drawing responses along the lines of "it is not toxic
@@ -34,7 +34,7 @@ strongly skewed as people flocked en masse to downvote it.
 
 Twitter has been filled with pictures of people breaking their razors,
 throwing them down the toilet and generally showing that they are now
-done with Gilette. The intensity of the reactions show that a lot of
+done with Gillette. The intensity of the reactions show that a lot of
 people feel attacked.
 
 Personally I think a lot of this has to do with the sunken cost fallacy.

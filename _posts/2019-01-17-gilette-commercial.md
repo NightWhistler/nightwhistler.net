@@ -19,9 +19,9 @@ For clarity's sake, let me define toxic masculinity here as I understand
 it: it is the set of harmful expectations placed on men, about how they should
 think, act and feel. Basically, any time you have been told by another
 man to "man up", "don't be a pussy", "don't be a little bitch", etc...
-you get the point. That's toxic masculinity in action.
+(you get the point); that's toxic masculinity in action.
 
-It is a mold that men are pushed into, which actively harms them by not
+It is a mould that men are pushed into, which actively harms them by not
 allowing us to be full human beings with the full range of human
 behaviours and emotions.
 
@@ -37,16 +37,15 @@ throwing them down the toilet and generally showing that they are now
 done with Gillette. The intensity of the reactions show that a lot of
 people feel attacked.
 
-Personally I think a lot of this has to do with the sunken cost fallacy.
+Personally I think a lot of this has to do with the sunk cost fallacy.
 
-The sunken cost fallacy
+The sunk cost fallacy
 -----------------------
 
-The sunken cost fallacy is often worded as "throwing good money after
-bad". It's a mechanism where the more we have invested in something, be
-it time, effort or money, the more we become attached to it and the less
-likely we are to abandon it, even if abandoning it would be the rational
-thing to do.
+The sunk cost fallacy is often worded as "throwing good money after
+bad". It's a mechanism where the more we have invested in something - be
+it time, effort or money - the more we become attached to it and the less
+likely we are to abandon it, **even if abandoning it would be the rational thing to do.**
 
 This can often lead to situations where people actively act against
 their own best interest simply because of past investment.
@@ -64,7 +63,7 @@ Every man has memories of being told to "man up", and then gritting his
 teeth and shoving his emotions down. Of not showing pain, of trying to
 put on a strong front because "boys don't cry".
 
-This effort is then what becomes the sunken cost... You embraced
+This effort is then what becomes the sunk cost... You embraced
 something at great personal expense, changed yourself to fit an image.
 Then someone comes along and tells you that this image you have worked so
 hard to conform to is actually a bad thing. They even use the word "toxic"

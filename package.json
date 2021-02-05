@@ -1,0 +1,36 @@
+{
+  "name": "nightwhistler.github.io",
+  "version": "1.0.0",
+  "description": "Personal blog",
+  "main": "index.html",
+  "scripts": {
+    "clean:dist": "rm -rf _site",
+    "clean": "npm run clean:dist",
+    "build:jekyll": "jekyll build --config _config.yml",
+    "build": "npm run clean && npm run build:jekyll",
+    "watch:jekyll": "chokidar 'index.html' '_includes/*.html' '_layouts/*.html' '_posts/*' -c 'npm run build:jekyll && browser-sync reload'",
+    "serve": "browser-sync start --https --server _site",
+    "start": "npm run build -s && parallelshell \"npm run serve -s\" \"npm run watch:jekyll -s\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NightWhistler/nightwhistler.github.io.git"
+  },
+  "author": "Alex Kuiper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NightWhistler/nightwhistler.github.io/issues"
+  },
+  "homepage": "https://github.com/NightWhistler/nightwhistler.github.io#readme",
+  "dependencies": {
+    "chokidar": "^3.5.1",
+    "chokidar-cli": "^2.1.0",
+    "serve": "^11.3.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "clean": "^4.0.2",
+    "parallelshell": "^3.0.1",
+    "watch": "^1.0.2"
+  }
+}

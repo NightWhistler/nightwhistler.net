@@ -26,6 +26,27 @@ linkedin: alkuiper
 # disqus: username
 # google_analytics: UA-69391421-1
 
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - [vendor]
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - LICENSE
+  - Rakefile
+  - banner.js
+  - package-lock.json
+  - README.md 
+  - sitemap.xml
+  - CHANGELOG.md
+  - jekyll-theme-so-simple.gemspec
 
 # needed for travis-ci build
-exclude: [vendor]
+# exclude: [vendor]

@@ -6,7 +6,7 @@
   "scripts": {
     "clean:dist": "rm -rf _site",
     "clean": "npm run clean:dist",
-    "build:jekyll": "jekyll build --config _config.yml",
+    "build:jekyll": "bundle exec jekyll build --config _config.yml",
     "build": "npm run clean && npm run build:jekyll",
     "watch:jekyll": "chokidar 'index.html' '_includes/*.html' '_layouts/*.html' '_posts/*' -c 'npm run build:jekyll && browser-sync reload'",
     "serve": "browser-sync start --https --server _site",

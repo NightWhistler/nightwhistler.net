@@ -3,10 +3,10 @@
 html,
 body {
   height: 100%;
-  background-color: #fff;
+  background-color: #f7f7f7;
   font-family: 'Source Sans Pro', sans-serif;
   /* The html and body elements cannot have any padding or margin. */
-  border-top: 3px solid #27A822;
+  border-top: 3px solid #4777d6;
 }
 /* Wrapper for page content to push down footer */
 #wrap {
@@ -26,8 +26,8 @@ body {
   margin-bottom: 10px;
 }
 .navbar-default {
-  background-color: #ffffff;
-  border-color: #ffffff;
+  background-color: #f7f7f7;
+  border-color: #f7f7f7;
 }
 .navbar-default .navbar-brand {
   color: #6b6b6b;
@@ -46,17 +46,17 @@ body {
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   color: #6b6b6b;
-  background-color: #ffffff;
+  background-color: #f7f7f7f7;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   color: #6b6b6b;
-  background-color: #ffffff;
+  background-color: #f7f7f7;
 }
 .navbar-default .navbar-toggle {
-  border-color: #ffffff;
+  border-color: #f7f7f7;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #ffffff;
+  background-color: #f7f7f7;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #6b6b6b;
@@ -80,7 +80,7 @@ body {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #6b6b6b;
-    background-color: #ffffff;
+    background-color: #f7f7f7;
   }
 }
 
@@ -96,10 +96,10 @@ body {
   margin: 20px 0;
 }
 .container a {
-  color: #27A822;
+  color: #4777d6;
 }
 .container a:hover {
-  color: #267723;
+  color: #4777d6;
 }
 .img-responsive {
  display: block;
@@ -120,7 +120,7 @@ body {
   font-size: 15px;
 }
 .panel-default h4 a, h5 a {
-  color: #27A822;
+  color: #4777d6;
 }
 .panel-default h4 a:hover, h5 a:hover {
   color: #267723;
@@ -164,6 +164,14 @@ body {
   font-size: 18px;
 }
 
+.label-success {
+    background-color: #4777d6;
+}
+
+.panel {
+  background-color: #f7f7f7f7;
+}
+
 /* Footer 
 -------------------------------------------------- */
 
@@ -174,7 +182,7 @@ body {
 	color: #6b6b6b;
 }
 div.footer{
-  border-bottom: 5px solid #27A822;;
+  border-bottom: 5px solid #4777d6;;
 }
 /* Set the fixed height of the footer here */
 /*.footer {
